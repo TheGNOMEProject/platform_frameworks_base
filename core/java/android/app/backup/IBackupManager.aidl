@@ -50,7 +50,7 @@ interface IBackupManager {
      * only callers who hold the android.permission.BACKUP permission
      * may invoke it for arbitrary packages.
      */
-    void clearBackupData(String transportName, String packageName);
+    void clearBackupData(String packageName);
 
     /**
      * Notifies the Backup Manager Service that an agent has become available.  This

@@ -252,7 +252,7 @@ class BackupManagerService extends IBackupManager.Stub {
 
     // Transport bookkeeping
     final HashMap<String,IBackupTransport> mTransports
-            = new HashMap<String,IBackupTransport>();
+	  = new HashMap<String,IBackupTransport>();
     String mCurrentTransport;
     IBackupTransport mLocalTransport, mGoogleTransport;
     ActiveRestoreSession mActiveRestoreSession;
@@ -817,7 +817,7 @@ class BackupManagerService extends IBackupManager.Stub {
         // Set up our transport options and initialize the default transport
         // TODO: Have transports register themselves somehow?
         // TODO: Don't create transports that we don't need to?
-        mLocalTransport = new LocalTransport(context); // This is actually pretty cheap
+        mLocalTransport = new LocalTransport(context);  // This is actually pretty cheap
         ComponentName localName = new ComponentName(context, LocalTransport.class);
         registerTransport(localName.flattenToShortString(), mLocalTransport);
 
@@ -829,7 +829,7 @@ class BackupManagerService extends IBackupManager.Stub {
         }
         if (DEBUG) Slog.v(TAG, "Starting with transport " + mCurrentTransport);
 
-        // Attach to the Google backup transport. When this comes up, it will set
+        // Attach to the Google backup transport.  When this comes up, it will set
         // itself as the current transport because we explicitly reset mCurrentTransport
         // to null.
         ComponentName transportComponent = new ComponentName("com.google.android.backup",
@@ -849,7 +849,7 @@ class BackupManagerService extends IBackupManager.Stub {
                 Slog.w(TAG, "Possible Google transport spoof: ignoring " + info);
             }
         } catch (PackageManager.NameNotFoundException nnf) {
-            // No such package? No binding.
+            // No such package?  No binding.
             if (DEBUG) Slog.v(TAG, "Google transport not present");
         }
 
@@ -1300,11 +1300,11 @@ class BackupManagerService extends IBackupManager.Stub {
     // is an unregistration, and the transport's entry is removed from our bookkeeping.
     private void registerTransport(String name, IBackupTransport transport) {
         synchronized (mTransports) {
-            if (DEBUG) Slog.v(TAG, "Registering transport " + name + " = " + transport);
+	    if (DEBUG) Slog.v(TAG, "Registering transport " + name + " = " + transport);
             if (transport != null) {
                 mTransports.put(name, transport);
             } else {
-                mTransports.remove(name);
+		mTransports.remove(name);
                 // Nothing further to do in the unregistration case
                 return;
             }

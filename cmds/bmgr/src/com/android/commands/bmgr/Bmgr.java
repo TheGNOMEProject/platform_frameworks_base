@@ -200,8 +200,8 @@ public final class Bmgr {
         }
 
         try {
-            mBmgr.clearBackupData(transport, pkg);
-            System.out.println("Wiped backup data for " + pkg + " on " + transport);
+            mBmgr.clearBackupData(pkg);
+            System.out.println("Wiped backup data for " + pkg);
         } catch (RemoteException e) {
             System.err.println(e.toString());
             System.err.println(BMGR_NOT_RUNNING_ERR);
