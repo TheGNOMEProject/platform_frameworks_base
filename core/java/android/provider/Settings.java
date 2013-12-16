@@ -2405,6 +2405,13 @@ public final class Settings {
          * @hide
          */
         public static final String POINTER_SPEED = "pointer_speed";
+
+	/**
+	 * Navigation bar customization
+         *
+	 * @hide
+	 */
+	public static final String NAV_BUTTONS = "nav_buttons";
          
          /**
          * Custom navring actions

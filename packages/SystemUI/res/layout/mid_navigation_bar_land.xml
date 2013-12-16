@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:id="@+id/nav_buttons">
+    <com.android.systemui.statusbar.policy.KeyButtonView
+        android:id="@+id/one"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_weight="0"
+        systemui:glowBackground="@drawable/ic_sysbar_highlight_land" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:gravity="center_vertical"
+        android:id="@+id/mid_nav_buttons"
+        android:layout_gravity="center_vertical"
+        android:clipToPadding="false"
+        android:animateLayoutChanges="true">
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/two"
+            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            systemui:keyRepeat="true"
+            systemui:glowBackground="@drawable/ic_sysbar_highlight_land" />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/three"
+            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            systemui:keyRepeat="true"
+            android:layout_weight="0"
+            systemui:glowBackground="@drawable/ic_sysbar_highlight_land" />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/four"
+            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            systemui:keyRepeat="true"
+            systemui:glowBackground="@drawable/ic_sysbar_highlight_land" />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+        <com.android.systemui.statusbar.policy.KeyButtonView
+            android:id="@+id/five"
+            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            systemui:keyRepeat="true"
+            systemui:glowBackground="@drawable/ic_sysbar_highlight_land" />
+    </LinearLayout>
+    <com.android.systemui.statusbar.policy.KeyButtonView
+        android:id="@+id/six"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_weight="0"
+        systemui:keyRepeat="true"
+        systemui:glowBackground="@drawable/ic_sysbar_highlight_land" />
+</LinearLayout>
