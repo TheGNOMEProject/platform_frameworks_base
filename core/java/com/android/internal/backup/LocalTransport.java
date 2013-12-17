@@ -1,18 +1,18 @@
 /*
- * Copyright (C) 2009 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright (C) 2009 The Android Open Source Project
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 package com.android.internal.backup;
 
@@ -40,9 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Backup transport for stashing stuff into a known location on disk, and
- * later restoring from there.  For testing only.
- */
+* Backup transport for stashing stuff into a known location on disk, and
+* later restoring from there. For testing only.
+*/
 
 public class LocalTransport extends IBackupTransport.Stub {
     private static final String TAG = "LocalTransport";
@@ -60,7 +60,7 @@ public class LocalTransport extends IBackupTransport.Stub {
     private Context mContext;
     private File mDataDir = new File(Environment.getDownloadCacheDirectory(), "backup");
     private PackageInfo[] mRestorePackages = null;
-    private int mRestorePackage = -1;  // Index into mRestorePackages
+    private int mRestorePackage = -1; // Index into mRestorePackages
 
 
     public LocalTransport(Context context) {
@@ -102,7 +102,7 @@ public class LocalTransport extends IBackupTransport.Stub {
         packageDir.mkdirs();
 
         // Each 'record' in the restore set is kept in its own file, named by
-        // the record key.  Wind through the data file, extracting individual
+        // the record key. Wind through the data file, extracting individual
         // record operations and building a set of all the updates to apply
         // in this update.
         BackupDataInput changeSet = new BackupDataInput(data.getFileDescriptor());
@@ -130,7 +130,7 @@ public class LocalTransport extends IBackupTransport.Stub {
                         buf = new byte[bufSize];
                     }
                     changeSet.readEntityData(buf, 0, dataSize);
-                    if (DEBUG) Log.v(TAG, "  data size " + dataSize);
+                    if (DEBUG) Log.v(TAG, " data size " + dataSize);
 
                     try {
                         entity.write(buf, 0, dataSize);
@@ -146,7 +146,7 @@ public class LocalTransport extends IBackupTransport.Stub {
             }
             return BackupConstants.TRANSPORT_OK;
         } catch (IOException e) {
-            // oops, something went wrong.  abort the operation and return error.
+            // oops, something went wrong. abort the operation and return error.
             Log.v(TAG, "Exception reading backup input:", e);
             return BackupConstants.TRANSPORT_ERROR;
         }
@@ -211,12 +211,12 @@ public class LocalTransport extends IBackupTransport.Stub {
         while (++mRestorePackage < mRestorePackages.length) {
             String name = mRestorePackages[mRestorePackage].packageName;
             if (new File(mDataDir, name).isDirectory()) {
-                if (DEBUG) Log.v(TAG, "  nextRestorePackage() = " + name);
+                if (DEBUG) Log.v(TAG, " nextRestorePackage() = " + name);
                 return name;
             }
         }
 
-        if (DEBUG) Log.v(TAG, "  no more packages to restore");
+        if (DEBUG) Log.v(TAG, " no more packages to restore");
         return "";
     }
 
@@ -228,13 +228,13 @@ public class LocalTransport extends IBackupTransport.Stub {
         // The restore set is the concatenation of the individual record blobs,
         // each of which is a file in the package's directory
         File[] blobs = packageDir.listFiles();
-        if (blobs == null) {  // nextRestorePackage() ensures the dir exists, so this is an error
+        if (blobs == null) { // nextRestorePackage() ensures the dir exists, so this is an error
             Log.e(TAG, "Error listing directory: " + packageDir);
             return BackupConstants.TRANSPORT_ERROR;
         }
 
         // We expect at least some data if the directory exists in the first place
-        if (DEBUG) Log.v(TAG, "  getRestoreData() found " + blobs.length + " key files");
+        if (DEBUG) Log.v(TAG, " getRestoreData() found " + blobs.length + " key files");
         BackupDataOutput out = new BackupDataOutput(outFd.getFileDescriptor());
         try {
             for (File f : blobs) {
@@ -244,7 +244,7 @@ public class LocalTransport extends IBackupTransport.Stub {
                     byte[] buf = new byte[size];
                     in.read(buf);
                     String key = new String(Base64.decode(f.getName()));
-                    if (DEBUG) Log.v(TAG, "    ... key=" + key + " size=" + size);
+                    if (DEBUG) Log.v(TAG, " ... key=" + key + " size=" + size);
                     out.writeEntityHeader(key, size);
                     out.writeEntityData(buf, size);
                 } finally {
