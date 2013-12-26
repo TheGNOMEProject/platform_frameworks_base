@@ -2467,6 +2467,18 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_NOTIFICATIONS_EXPANDED_VIEW = "lockscreen_notifications_expanded_view";
 
+	/**
+	* Show lockscreen notifications extended when possible
+	* @hide
+	*/
+        public static final String LOCKSCREEN_NOTIFICATIONS_FORCE_EXPANDED_VIEW = "lockscreen_notifications_force_expanded_view";
+
+        /**
+	* Wakes the device when a new notifications is received
+	* @hide
+	*/
+        public static final String LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION = "lockscreen_notifications_wake_on_notification";
+
         /**
          * I am the lolrus.
          * <p>
