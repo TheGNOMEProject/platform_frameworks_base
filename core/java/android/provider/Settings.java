@@ -2479,6 +2479,12 @@ public final class Settings {
 	*/
         public static final String LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION = "lockscreen_notifications_wake_on_notification";
 
+	/**
+	* Sets the count of notifications shown at once
+	* @hide
+	*/
+        public static final String LOCKSCREEN_NOTIFICATIONS_HEIGHT = "lockscreen_notifications_height";
+
         /**
          * I am the lolrus.
          * <p>
